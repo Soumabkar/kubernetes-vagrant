@@ -41,6 +41,8 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "file", source: "Mariadb-deploy-kubernetes/mariadb-deployment-v4.yaml", destination: "/home/vagrant/mariadb-kube/mariadb-deployment-v4.yaml"
   # config.vm.provision "file", source: "Mariadb-deploy-kubernetes/mariadb-statefulset.yaml", destination: "/home/vagrant/mariadb-kube/mariadb-statefulset.yaml"
   # config.vm.provision "file", source: "Mariadb-deploy-kubernetes/mariadb-statefulset-v1.yaml", destination: "/home/vagrant/mariadb-kube/mariadb-statefulset-v1.yaml"
-  config.vm.provision "file", source: "Mariadb-deploy-kubernetes/mariadb-statefulset-v2.yaml", destination: "/home/vagrant/mariadb-kube/mariadb-statefulset-v2.yaml"
+  # config.vm.provision "file", source: "Mariadb-deploy-kubernetes/mariadb-statefulset-v2.yaml", destination: "/home/vagrant/mariadb-kube/mariadb-statefulset-v2.yaml"
+  # config.vm.provision "file", source: "Glances/glances.yaml", destination: "/home/vagrant/Glances/glances.yaml"
+  config.vm.provision "file", source: "Glances/glances-v1.yaml", destination: "/home/vagrant/Glances/glances-v1.yaml"
 
 end

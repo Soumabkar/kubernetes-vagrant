@@ -1,0 +1,34 @@
+apiVersion: apps/v1 
+kind: DaemonSet 
+metadata: 
+ name: glances 
+ namespace: kube-system 
+spec: 
+ selector: 
+   matchLabels: 
+     app: glances 
+ template: 
+   metadata: 
+     labels: 
+       app: glances 
+   spec: 
+     tolerations: 
+       - effect: NoSchedule 
+         operator: Exists 
+     hostPID: true 
+     hostIPC: true 
+     hostNetwork: true 
+     volumes: 
+       - name: hostfs 
+         hostPath: 
+           path: / 
+     containers: 
+       - name: glances 
+         image: nicolargo/glances 
+         imagePullPolicy: Always 
+         env: 
+           - name: "GLANCES_OPT" 
+             value: "-w" 
+         volumeMounts: 
+           - name: hostfs 
+             mountPath: /hostfs
