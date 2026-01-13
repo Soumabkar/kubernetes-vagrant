@@ -1,0 +1,2 @@
+-- create user 'replication'@'%' identified by 'ReplicationUser'; 
+-- grant replication slave on *.* to 'replication'@'%';

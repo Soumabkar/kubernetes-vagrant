@@ -1,0 +1,1 @@
+mariadb -p$MARIADB_ROOT_PASSWORD /docker-entrypoint-initdb.d/stop-db.sql

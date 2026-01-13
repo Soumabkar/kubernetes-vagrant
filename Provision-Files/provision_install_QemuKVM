@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Script pour vérifier et installer QEMU-KVM sur Ubuntu (via Arkade ou apt)
+
+# Fonction pour vérifier si un paquet est installé
+is_installed() {
+    dpkg -l | grep -q "$1"
+}
+
+# Vérifier si KVM est pris en charge par le processeur
+if ! grep -E -q "(vmx|svm)" /proc/cpuinfo; then
+    echo "❌ Le processeur ne prend pas en charge la virtualisation KVM. Vérifiez les paramètres du BIOS."
+    exit 1
+fi
+
+# Vérifier si QEMU-KVM est installé
+if is_installed qemu-kvm; then
+    echo "✅ QEMU-KVM est déjà installé :"
+    qemu-system-x86_64 --version | head -n 1
+    kvm-ok
+    exit 0
+fi
+
+
+# Installer QEMU-KVM et les outils associés
+echo "Installation de QEMU-KVM et des dépendances..."
+sudo apt-get update
+sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+
+# Ajouter l'utilisateur au groupe libvirt et kvm
+sudo usermod -aG libvirt $USER
+sudo usermod -aG kvm $USER
+
+# Vérifier l'installation
+if is_installed qemu-kvm; then
+    echo "✅ QEMU-KVM a été installé avec succès :"
+    qemu-system-x86_64 --version | head -n 1
+    echo ""
+    echo "Redémarrez votre session pour appliquer les changements de groupe."
+    echo "Vous pouvez vérifier la configuration avec : virsh list --all"
+else
+    echo "❌ Échec de l'installation de QEMU-KVM."
+    exit 1
+fi
+
+# Vérifier si le module KVM est chargé
+if lsmod | grep -q kvm; then
+    echo "✅ Le module KVM est chargé."
+else
+    echo "⚠️ Le module KVM n'est pas chargé. Chargez-le avec : sudo modprobe kvm"
+fi

@@ -1,0 +1,42 @@
+--- 
+apiVersion: apps/v1 
+kind: StatefulSet 
+metadata: 
+ name: mariadb 
+ labels: 
+   app: mariadb 
+spec: 
+ serviceName: mariadb 
+ selector: 
+   matchLabels: 
+     app: mariadb 
+ template: 
+   metadata: 
+     labels: 
+       app: mariadb 
+   spec: 
+     containers: 
+       - image: docker.io/library/mariadb 
+         name: mariadb 
+         volumeMounts: 
+           - mountPath: /var/lib/mysql 
+             name:      mariadb-data 
+         envFrom: 
+           - configMapRef: { name: mariadb } 
+           - secretRef:    { name: mariadb } 
+         startupProbe: &probe 
+           exec: 
+             command: 
+               - "sh" 
+               - "-c" 
+               - "mariadb-admin status -p$MARIADB_ROOT_PASSWORD" 
+         livenessProbe : *probe 
+         readinessProbe: *probe 
+ volumeClaimTemplates: 
+   - metadata: 
+       name: mariadb-data 
+     spec: 
+       accessModes: [ "ReadWriteOnce" ] 
+       resources: 
+         requests: 
+           storage: 100Mi

@@ -1,0 +1,9 @@
+-- CHANGE MASTER TO 
+--    MASTER_HOST='mariadb-0.mariadb', 
+--    MASTER_USER='replication', 
+--    MASTER_PASSWORD='ReplicationUser', 
+--    MASTER_PORT=3306, 
+--    MASTER_LOG_FILE='@FILE@', 
+--    MASTER_LOG_POS=@POSITION@, 
+--    MASTER_CONNECT_RETRY=10; 
+-- START SLAVE; 

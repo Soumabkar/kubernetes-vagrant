@@ -1,0 +1,2 @@
+-- STOP SLAVE; 
+-- SHUTDOWN; 
