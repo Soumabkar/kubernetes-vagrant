@@ -13,10 +13,10 @@ Vagrant.configure("2") do |config|
   end
 
   # # config.vm.provision "shell", path: "Provision-Files/prepa-env.sh" 
-  config.vm.provision "shell", path: "Provision-Files/provision_install_arkade.sh" # Provisionnement pour installer arkade
-  config.vm.provision "shell", path: "Provision-Files/provision_install_docker.sh" # Provisionnement pour installer Docker
-  config.vm.provision "shell", path: "Provision-Files/provision_install_kubernetes_arkade.sh" # Provisionnement pour installer kubectl via arkade
-  config.vm.provision "shell", path: "Provision-Files/provision_install_minikube_arkade.sh" # Provisionnement pour installer minikube via arkade 
+  # config.vm.provision "shell", path: "Provision-Files/provision_install_arkade.sh" # Provisionnement pour installer arkade
+  # config.vm.provision "shell", path: "Provision-Files/provision_install_docker.sh" # Provisionnement pour installer Docker
+  # config.vm.provision "shell", path: "Provision-Files/provision_install_kubernetes_arkade.sh" # Provisionnement pour installer kubectl via arkade
+  # config.vm.provision "shell", path: "Provision-Files/provision_install_minikube_arkade.sh" # Provisionnement pour installer minikube via arkade 
   # # config.vm.provision "shell", path: "Provision-Files/provision_deploy_cluster_minikube_mailpit.sh" # Provisionnement pour déployer un cluster Kubernetes avec minikube mailpit
   # # config.vm.provision "shell", path: "Provision-Files/provision_deploy_cluster_minikube_mariadb.sh" # Provisionnement pour déployer un cluster Kubernetes avec minikube mariadb
   # config.vm.provision "shell", path: "Provision-Files/provision_install_helm_arkade.sh" # Provisionnement pour installer helm via arkade
@@ -45,5 +45,7 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "file", source: "Mariadb-deploy-kubernetes/mariadb-statefulset-v2.yaml", destination: "/home/vagrant/mariadb-kube/mariadb-statefulset-v2.yaml"
   # config.vm.provision "file", source: "Glances/glances.yaml", destination: "/home/vagrant/Glances/glances.yaml"
   # config.vm.provision "file", source: "Glances/glances-v1.yaml", destination: "/home/vagrant/Glances/glances-v1.yaml"
+  # config.vm.provision "file", source: "Trivy/clusterrolebinding.yaml", destination: "/home/vagrant/Trivy/clusterrolebinding.yaml"
+  config.vm.provision "file", source: "Trivy/trivy_job.yaml", destination: "/home/vagrant/Trivy/trivy_job.yaml"
 
 end
