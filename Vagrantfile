@@ -13,10 +13,10 @@ Vagrant.configure("2") do |config|
   end
 
   # # config.vm.provision "shell", path: "Provision-Files/prepa-env.sh" 
-  # config.vm.provision "shell", path: "Provision-Files/provision_install_arkade.sh" # Provisionnement pour installer arkade
-  # config.vm.provision "shell", path: "Provision-Files/provision_install_docker.sh" # Provisionnement pour installer Docker
-  # config.vm.provision "shell", path: "Provision-Files/provision_install_kubernetes_arkade.sh" # Provisionnement pour installer kubectl via arkade
-  # config.vm.provision "shell", path: "Provision-Files/provision_install_minikube_arkade.sh" # Provisionnement pour installer minikube via arkade 
+  config.vm.provision "shell", path: "Provision-Files/provision_install_arkade.sh" # Provisionnement pour installer arkade
+  config.vm.provision "shell", path: "Provision-Files/provision_install_docker.sh" # Provisionnement pour installer Docker
+  config.vm.provision "shell", path: "Provision-Files/provision_install_kubernetes_arkade.sh" # Provisionnement pour installer kubectl via arkade
+  config.vm.provision "shell", path: "Provision-Files/provision_install_minikube_arkade.sh" # Provisionnement pour installer minikube via arkade 
   # # config.vm.provision "shell", path: "Provision-Files/provision_deploy_cluster_minikube_mailpit.sh" # Provisionnement pour déployer un cluster Kubernetes avec minikube mailpit
   # # config.vm.provision "shell", path: "Provision-Files/provision_deploy_cluster_minikube_mariadb.sh" # Provisionnement pour déployer un cluster Kubernetes avec minikube mariadb
   # config.vm.provision "shell", path: "Provision-Files/provision_install_helm_arkade.sh" # Provisionnement pour installer helm via arkade
